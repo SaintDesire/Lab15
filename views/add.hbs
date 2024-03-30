@@ -1,0 +1,12 @@
+<h1>Add Contact</h1>
+{{#each contacts}}
+    <a href="/Update?id={{this.id}}" class="contact">
+    {{this.name}}: {{this.phone}}
+    </a>
+{{/each}}
+<form action="/Add" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="phone" placeholder="Phone">
+    <button type="submit">Add</button>
+    <a href="/" class="cancel-button">Cancel</a>
+</form>

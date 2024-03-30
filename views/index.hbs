@@ -1,0 +1,9 @@
+<h1>Phone Directory</h1>
+{{#each contacts}}
+    <a href="/Update?id={{this.id}}" class="contact">
+        {{this.name}}: {{this.phone}}
+    </a>
+{{/each}}
+<form action="/Add" method="GET">
+    <button type="submit">Add</button>
+</form>

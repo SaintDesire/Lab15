@@ -1,0 +1,38 @@
+<h1>Update Contact</h1>
+{{#each contacts}}
+    <a href="/Update?id={{this.id}}" class="contact">
+    {{this.name}}: {{this.phone}}
+    </a>
+{{/each}}
+<form id="update-form" action="/Update" method="POST">
+    <input type="hidden" id="idInput" name="id" value="{{contact.id}}">
+    <input type="text" id="nameInput" name="name" value="{{contact.name}}">
+    <input type="text" id="phoneInput" name="phone" value="{{contact.phone}}">
+    <button type="submit">Update</button>
+    <button type="button" onclick="deleteContact()">Delete</button>
+    <a href="/" class="cancel-button">Cancel</a>
+</form>
+
+<script>
+    function deleteContact() {
+        // Получаем значение id из скрытого поля формы
+        const id = document.querySelector('#idInput').value;
+        // Отправляем запрос на удаление контакта
+        fetch('/Delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded' // Установите правильный заголовок
+            },
+            body: new URLSearchParams({ id }) // Передайте данные формы в формате URL-кодирования
+        })
+                .then(response => {
+                    if (response.ok) {
+                        // Перенаправляем пользователя на главную страницу после успешного удаления
+                        window.location.href = '/';
+                    } else {
+                        console.error('Failed to delete contact');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+    }
+</script>
