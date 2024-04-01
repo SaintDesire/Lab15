@@ -1,9 +1,11 @@
 <h1>Update Contact</h1>
-{{#each contacts}}
-    <a href="/Update?id={{this.id}}" class="contact">
-    {{this.name}}: {{this.phone}}
-    </a>
-{{/each}}
+<div style="display: flex; flex-direction: column; text-align: center">
+    {{#each contacts}}
+        <a href="/Update?id={{this.id}}" class="contact">
+        {{this.name}}: {{this.phone}}
+        </a>
+    {{/each}}
+</div>
 <form id="update-form" action="/Update" method="POST">
     <input type="hidden" id="idInput" name="id" value="{{contact.id}}">
     <input type="text" id="nameInput" name="name" value="{{contact.name}}">
